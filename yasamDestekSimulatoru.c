@@ -37,9 +37,7 @@ int main() {
     srand(time(NULL));
     char komut;
 
-    printf("========================================================\n");
     printf("       MARS KOLONİSİ YAŞAM DESTEK SİPÜLATÖRÜNE HOŞGELDİNİZ\n");
-    printf("========================================================\n");
 
     // Zorluk Seviyesi Seçimi (Switch-Case)
     do {
@@ -73,8 +71,7 @@ int main() {
     } while (zorluk_secimi == ' ');
 
     // Komut Rehberi
-    printf("\n[ KOMUT REHBERİ ]\n");
-    printf("------------------------------------------------------------------------\n");
+    printf("\nKOMUTLAR \n");
     printf(" G : Keşif yap (Enerji ve oksijen harcar; su veya yedek parça bulunabilir)\n");
     printf(" O : Oksijen üret (Su ve enerji harcayarak oksijen üretir)\n");
     printf(" T : Tamir et (Yedek parça harcayarak modül hasarını azaltır)\n");
@@ -83,7 +80,6 @@ int main() {
     printf(" K : Kum fırtınasını simüle et (FOR döngüsü)\n");
     printf(" H : Hava kilidi şifresi (DO-WHILE döngüsü ile kilidi mühürle)\n");
     printf(" Q : Çıkış yap\n");
-    printf("------------------------------------------------------------------------\n");
 
     // Ana Oyun Döngüsü (Do-While)
     do {
@@ -102,8 +98,6 @@ int main() {
             simulasyon_devam = 0;
             break;
         }
-
-        printf("\n----------------------------------------------------\n");
         printf("GÜN: %d/%d | TUR: %d | Komut giriniz (D: Durum, Q: Çıkış): ", gun, hedef_gun, tur);
         
         if (scanf(" %c", &komut) != 1) { komut = ' '; }
@@ -144,7 +138,7 @@ int main() {
                 simulasyon_devam = 0;
                 break;
             default:
-                printf("!!! Geçersiz komut! Lütfen rehberdeki harflerden birini girin. (Süre harcanmadı) !!!\n");
+                printf(" Geçersiz komut! Lütfen rehberdeki harflerden birini girin. (Süre harcanmadı)\n");
                 continue; // Tanımsız komut tur/süre harcamaz
         }
 
@@ -159,7 +153,7 @@ int main() {
     int puan = (gun * 100) + saglik + oksijen - modul_hasari;
     if (puan < 0) puan = 0;
 
-    printf("\n================ OYUN SONU RAPORU ================\n");
+    printf("\nOYUN SONU RAPORU\n");
     printf("Hayatta Kalınan Gün : %d\n", gun > hedef_gun ? hedef_gun : gun);
     printf("Toplam Tur Sayısı   : %d\n", tur);
     printf("Son Sağlık Seviyesi : %d/100\n", saglik);
@@ -168,7 +162,6 @@ int main() {
     printf("Kalan Su Miktarı    : %d birim\n", su_miktari);
     printf("Kalan Yedek Parça   : %d\n", yedek_parca);
     printf("TOPLAM PUANINIZ     : %d Puan\n", puan);
-    printf("==================================================\n");
 
     return 0;
 }
@@ -188,7 +181,7 @@ void sinirlari_kontrol_et() {
 }
 
 void durum_raporu_goster() {
-    printf("\n============== DURUM RAPORU ==============\n");
+    printf("\n DURUM RAPORU \n");
     printf("Gün: %d | Tur: %d | Zorluk: %c\n", gun, tur, zorluk_secimi);
     printf("Sağlık : %d/100\n", saglik);
     printf("Enerji : %d/100\n", enerji);
@@ -197,7 +190,6 @@ void durum_raporu_goster() {
     printf("Parça  : %d adet\n", yedek_parca);
     printf("Hasar  : %d/100\n", modul_hasari);
     printf("Kilit  : %s\n", kilit_muhurlu ? "MÜHÜRLÜ" : "AÇIK");
-    printf("----------------------------------------\n");
 
     // Kritik Uyarılar
     int kritik_var = 0;
@@ -209,7 +201,6 @@ void durum_raporu_goster() {
     if (!kritik_var) {
         printf(" TÜM SİSTEMLER NORMAL.\n");
     }
-    printf("========================================\n");
 }
 
 void hareket_yapildi() {
@@ -343,7 +334,7 @@ void kum_firtinasi_simule_et() {
     if (zorluk_secimi == 'N') firtina_suresi = 5;
     if (zorluk_secimi == 'Z') firtina_suresi = 7;
 
-    printf("\n================ KUM FIRTINASI BAŞLADI ================\n");
+    printf("\n KUM FIRTINASI BAŞLADI n");
     printf("Fırtına Süresi: %d tur sürecek.\n", firtina_suresi);
 
     int kaybedilen_saglik_toplam = 0;
@@ -394,12 +385,10 @@ void kum_firtinasi_simule_et() {
         }
     }
 
-    printf("=======================================================\n");
     printf(" FIRTINA ÖZETİ:\n");
     printf(" Hasar Alınan Tur Sayısı : %d\n", hasar_alinan_tur_sayisi);
     printf(" Toplam Kaybedilen Sağlık : %d\n", kaybedilen_saglik_toplam);
     printf(" Toplam Kaybedilen Oksijen: %d\n", kaybedilen_oksijen_toplam);
-    printf("=======================================================\n");
 }
 
 // DO-WHILE DÖNGÜSÜ - Hava Kilidi Şifresi
